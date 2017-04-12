@@ -1,1 +1,1 @@
-include ':app', ':baseadapterlib'
+include ':app', ':baseadapterlib', ':diffutildemo'
