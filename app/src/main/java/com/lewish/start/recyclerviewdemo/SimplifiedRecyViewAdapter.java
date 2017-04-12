@@ -12,8 +12,8 @@ import java.util.List;
  * created at 2017/4/11 16:02
  * 简写
  */
-public class MyAdapter extends CommonAdapter<String> {
-    public MyAdapter(Context context, int layoutId, List<String> datas) {
+public class SimplifiedRecyViewAdapter extends CommonAdapter<String> {
+    public SimplifiedRecyViewAdapter(Context context, int layoutId, List<String> datas) {
         super(context, layoutId, datas);
     }
 

@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private ActivityMainBinding binding;
-    private MyAdapter myRecyViewAdapter;
+    private SimplifiedRecyViewdapter2 myRecyViewAdapter;
     private List<String> mDatas;
     private static int num = 0;
     @Override
@@ -43,23 +43,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initRecyView() {
-        myRecyViewAdapter = new MyAdapter(this,R.layout.item_layout,mDatas);
+        myRecyViewAdapter = new SimplifiedRecyViewdapter2(this,R.layout.item_layout,mDatas);
         myRecyViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(ViewGroup parent, View view, Object o, int position) {
-                switch (view.getId()) {
-                    case R.id.list_item :
-                        Toast.makeText(MainActivity.this, "你点击了第"+(position+1)+"条Item", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.iv_icon:
-                        Toast.makeText(MainActivity.this, "你点击了第"+(position+1)+"条机器人的头像", Toast.LENGTH_SHORT).show();
-                        break;
-                }
+                Toast.makeText(MainActivity.this, "你点击了第"+(position+1)+"条Item", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public boolean onItemLongClick(ViewGroup parent, View view, Object o, int position) {
                 return false;
+            }
+        });
+        myRecyViewAdapter.setmOnIconClickListener(new SimplifiedRecyViewdapter2.OnIconClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(MainActivity.this, "你点击了第"+(position+1)+"条机器人的头像", Toast.LENGTH_SHORT).show();
             }
         });
         binding.mRecView.setAdapter(myRecyViewAdapter);

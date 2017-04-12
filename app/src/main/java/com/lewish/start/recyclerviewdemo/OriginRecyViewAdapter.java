@@ -14,15 +14,16 @@ import java.util.List;
  * author: sundong
  * created at 2017/4/11 15:12
  * 最原始的写法
+ * 给Item和Item中的icon设置点击监听
  */
-public class MyRecyViewAdapter extends RecyclerView.Adapter<MyRecyViewAdapter.MyViewHolder> {
+public class OriginRecyViewAdapter extends RecyclerView.Adapter<OriginRecyViewAdapter.MyViewHolder> {
     private Context mContext;
     private List<String> mDatas;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
     private int mLayoutRes;
 
-    public MyRecyViewAdapter(Context mContext, int layoutRes,List<String> datas) {
+    public OriginRecyViewAdapter(Context mContext, int layoutRes, List<String> datas) {
         this.mContext = mContext;
         this.mLayoutRes = layoutRes;
         this.mDatas = datas;
