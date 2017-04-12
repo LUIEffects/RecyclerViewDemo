@@ -89,6 +89,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void testModifie2() {
+        List<Student> newDatas = new ArrayList<>();
+        for (Student mData : mDatas) {
+            try {
+                newDatas.add(mData.clone());
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Student student = newDatas.get(2);
+        student.setStdName("222222222");
+        student.setStdAge(22);
+        student.setStdPhoneNum("22222222");
+
+        upDateRecy(newDatas);
     }
 
     private void testModifie() {

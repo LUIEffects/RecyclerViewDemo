@@ -39,7 +39,7 @@ public class RecyAdapter extends CommonAdapter<Student> {
             for (String key : payload.keySet()) {
                 switch (key) {
                     case RecyDiffCallback.KEY_STD_AGE:
-                        holder.setText(R.id.mTvStdAge, payload.getString(RecyDiffCallback.KEY_STD_AGE));
+                        holder.setText(R.id.mTvStdAge, payload.getInt(RecyDiffCallback.KEY_STD_AGE)+"");
                         break;
                     case RecyDiffCallback.KEY_STD_NAME:
                         holder.setText(R.id.mTvStdName, payload.getString(RecyDiffCallback.KEY_STD_NAME));
