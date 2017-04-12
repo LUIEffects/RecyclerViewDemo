@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
 
-        getData();
+        mDatas = getData();
         initRefreshLayout();
         initRecyView();
         binding.mBtnAdd.setOnClickListener(this);
@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void getData() {
-        mDatas = new ArrayList<>();
+    private List<Student> getData() {
+        List<Student> mDatas = new ArrayList<>();
         mDatas.add(new Student("111111","孙悟空",10,"18511231111", Student.stdGender.BOY));
         mDatas.add(new Student("222222","猪八戒",20,"18511232222", Student.stdGender.BOY));
         mDatas.add(new Student("333333","沙  僧",30,"18511233333", Student.stdGender.BOY));
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDatas.add(new Student("777777","潘金莲",70,"18511237777", Student.stdGender.GIRL));
         mDatas.add(new Student("888888","范冰冰",80,"18511238888", Student.stdGender.GIRL));
         mDatas.add(new Student("999999","高小琴",90,"18511239999", Student.stdGender.GIRL));
+        return mDatas;
     }
 
     private void initRefreshLayout() {
@@ -144,15 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onRefresh() {
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
-                List<Student> newDatas = new ArrayList<>();
-                for (Student mData : mDatas) {
-                    try {
-                        newDatas.add(mData.clone());
-                    } catch (CloneNotSupportedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
+                List<Student> newDatas = getData();
                 upDateRecy(newDatas);
 
                 binding.mRefreshLayout.setRefreshing(false);

@@ -1,5 +1,6 @@
 package com.lewish.start.diffutildemo;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 
@@ -14,6 +15,9 @@ import java.util.List;
 public class RecyDiffCallback extends DiffUtil.Callback {
     private List<Student> mOldData;
     private List<Student> mNewData;
+    public static final String KEY_STD_NAME = "KEY_STD_NAME";
+    public static final String KEY_STD_AGE = "KEY_STD_AGE";
+    public static final String KEY_STD_PHONENUM = "KEY_STD_PHONENUM";
 
     public RecyDiffCallback(List<Student> mOldData, List<Student> mNewData) {
         this.mOldData = mOldData;
@@ -58,6 +62,23 @@ public class RecyDiffCallback extends DiffUtil.Callback {
     @Nullable
     @Override
     public Object getChangePayload(int oldItemPosition, int newItemPosition) {
-        return super.getChangePayload(oldItemPosition, newItemPosition);
+        Student oldData = mOldData.get(oldItemPosition);
+        Student newData = mNewData.get(newItemPosition);
+        Bundle payload = new Bundle();
+
+        if(!oldData.getStdName().equals(newData.getStdName())) {
+            payload.putString(KEY_STD_NAME,newData.getStdName());
+        }
+        if(oldData.getStdAge() != newData.getStdAge()) {
+            payload.putInt(KEY_STD_AGE,newData.getStdAge());
+        }
+        if(!oldData.getStdPhoneNum().equals(newData.getStdPhoneNum())) {
+            payload.putString(KEY_STD_PHONENUM,newData.getStdPhoneNum());
+        }
+        if(payload.size()==0) {
+            return null;
+        }else {
+            return payload;
+        }
     }
 }
