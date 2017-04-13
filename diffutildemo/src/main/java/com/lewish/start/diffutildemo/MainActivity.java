@@ -1,11 +1,13 @@
 package com.lewish.start.diffutildemo;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.DiffUtil;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import com.lewish.start.diffutildemo.adapter.RecyAdapter;
 import com.lewish.start.diffutildemo.databinding.ActivityMainBinding;
 import com.lewish.start.diffutildemo.entity.Student;
+import com.lewish.start.diffutildemo.itemdecoration.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initRecyView() {
         mRecyAdapter = new RecyAdapter(this,R.layout.item_layout,mDatas);
+        binding.mRecView.setItemAnimator(new DefaultItemAnimator());
+        binding.mRecView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.ORIENTATION_HORIZONTAL, Color.CYAN));
         binding.mRecView.setAdapter(mRecyAdapter);
         binding.mRecView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
     }
